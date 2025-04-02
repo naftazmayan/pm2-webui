@@ -120,3 +120,7 @@ dist
 
 # Temp Folder
 .tmp
+build/app.js
+build/deploy-k6ztp8qm.
+build/fsevents-hj42pnne.node
+build/ecosystem.config.js

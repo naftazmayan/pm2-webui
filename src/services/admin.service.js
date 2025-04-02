@@ -5,7 +5,7 @@ const { hashPasswordSync, comparePassword } = require('../utils/password.util')
 const createAdminUser = (username, password) => {
     const adminUser = {
         APP_USERNAME: username,
-        APP_PASSWORD: hashPasswordSync(password)
+        APP_PASSWORD: password
     }
     setEnvDataSync(config.APP_DIR, adminUser)
 }

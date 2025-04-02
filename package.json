@@ -5,9 +5,10 @@
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node .",
-    "start:dev": "npx nodemon",
-    "setup-admin-user": "node src/bin/setup-admin-user"
+    "start": "bun run .",
+    "start:dev": "bun --hot .",
+    "setup-admin-user": "bun run src/bin/setup-admin-user",
+    "build": "bun build src/app.js --outdir=build --minify --target=node --format=cjs && bunx cpx .env build/ && bunx cpx ecosystem.config.js build/"
   },
   "keywords": [],
   "author": "Surya T",
@@ -25,6 +26,7 @@
     "koa-session": "^6.2.0",
     "koa-static": "^5.0.0",
     "koa2-ratelimit": "^0.9.1",
+    "pg-hstore": "^2.3.4",
     "pm2": "^5.1.2",
     "prompts": "^2.4.2"
   },
@@ -33,9 +35,9 @@
     "url": "https://github.com/suryamodulus/pm2-webui"
   },
   "bin": {
-    "pm2-webui": "./src/app.js"
+    "pm2-webui": "./dist/app.js"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "cpx": "^1.5.0"
   }
 }
