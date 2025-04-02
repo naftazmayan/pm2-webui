@@ -1,13 +1,19 @@
 async function pm2AppAction(appName, action){
-    await fetch(`/api/apps/${appName}/${action}`, { method: 'POST'})
-    location.reload();
+    fetch(`/api/apps/${appName}/${action}`, { method: 'POST'}).finally(() => {
+
+        location.reload();
+    })
 }
 
-async function openNotePad(appName){
-    await fetch(`/api/apps/${appName}/notepad`, { method: 'POST'})
+async function updateEnvFile(appName){
+    const envTextArea = document.getElementById('textAreaEnv')
+    const envValue = envTextArea.value.trim()
+
+    const data = {content: envValue}
+
+    await fetch(`/api/apps/${appName}/editEnv`, { method: 'POST', body: JSON.stringify(data) })
     location.reload();
 }
-
 
 
 

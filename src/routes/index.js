@@ -1,4 +1,5 @@
 const config = require('../config')
+const fs = require('fs');
 const RateLimit = require('koa2-ratelimit').RateLimit;
 const router = require('@koa/router')();
 const { listApps, describeApp, reloadApp, restartApp, stopApp, deleteApp } = require('../providers/pm2/api')
@@ -174,9 +175,19 @@ router.post('/api/apps/:appName/stop', isAuthenticated, async (ctx) => {
     }
 });
 
-router.post('/api/apps/:appName/notepad', isAuthenticated, async (ctx) => {
+router.post('/api/apps/:appName/editEnv', isAuthenticated, async (ctx) => {
     try{
         let { appName } = ctx.params
+        const app =  await describeApp(appName)
+        const envPath = app.pm2_env_cwd + '/.env'
+
+        const data = JSON.parse(ctx.request.body)
+        const content = data.content
+            
+        fs.writeFileSync(envPath, content)
+        return ctx.body = {
+            success: true
+        }
         
     }
     catch(err){
