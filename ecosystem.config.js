@@ -1,5 +1,3 @@
-const { watch } = require("cpx");
-
 module.exports = {
   apps: [
     {

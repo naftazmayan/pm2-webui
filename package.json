@@ -8,7 +8,7 @@
     "start": "bun run .",
     "start:dev": "bun --hot .",
     "setup-admin-user": "bun run src/bin/setup-admin-user",
-    "build": "bun build src/index.js --outdir=build-pm2-webui --minify --target=node --format=cjs && bunx cpx .env build-pm2-webui/ && bunx cpx ecosystem.config.js build-pm2-webui/"
+    "build": "bun build src/index.js --outdir=build-pm2-webui --target=node --format=cjs && bunx cpx .env build-pm2-webui/ && bunx cpx ecosystem.config.js build-pm2-webui/ && bunx cpx './src/views/**/*' build-pm2-webui/views && bunx cpx './src/public/**/*' build-pm2-webui/public"
   },
   "keywords": [],
   "author": "Surya T",
