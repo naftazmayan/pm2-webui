@@ -2,13 +2,13 @@
   "name": "pm2-webui",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "bun run .",
     "start:dev": "bun --hot .",
     "setup-admin-user": "bun run src/bin/setup-admin-user",
-    "build": "bun build src/app.js --outdir=build --minify --target=node --format=cjs && bunx cpx .env build/ && bunx cpx ecosystem.config.js build/"
+    "build": "bun build src/index.js --outdir=build-pm2-webui --minify --target=node --format=cjs && bunx cpx .env build-pm2-webui/ && bunx cpx ecosystem.config.js build-pm2-webui/"
   },
   "keywords": [],
   "author": "Surya T",
@@ -35,7 +35,7 @@
     "url": "https://github.com/suryamodulus/pm2-webui"
   },
   "bin": {
-    "pm2-webui": "./dist/app.js"
+    "pm2-webui": "./dist/index.js"
   },
   "devDependencies": {
     "cpx": "^1.5.0"
