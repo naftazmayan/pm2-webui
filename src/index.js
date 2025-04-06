@@ -12,6 +12,8 @@ const Koa = require("koa");
 
 // Init Application
 
+const isDevelopment = process.env.NODE_ENV === "development";
+
 if (!config.APP_USERNAME || !config.APP_PASSWORD) {
   console.log(
     "You must first setup admin user. Run command -> npm run setup-admin-user"
@@ -37,13 +39,15 @@ app.use(session(app));
 
 app.use(koaBody());
 
-app.use(serve(path.resolve("public")));
+app.use(
+  serve(isDevelopment ? path.join(__dirname, "public") : path.resolve("public"))
+);
 
 const router = require("./routes");
 app.use(router.routes());
 
 render(app, {
-  root: path.resolve("views"),
+  root: isDevelopment ? path.join(__dirname, "views") : path.resolve("views"),
   layout: "base",
   viewExt: "html",
   cache: false,
